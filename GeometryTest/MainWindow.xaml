@@ -1,0 +1,14 @@
+﻿<Window x:Class="GeometryTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource ListBackgroundBrush}" Loaded="LayoutRoot_Loaded">
+        <!-- Invert the grid's Y coordinates to represent positioning of coordinates. -->
+        <Grid.LayoutTransform>
+            <ScaleTransform ScaleY="-1"/>
+        </Grid.LayoutTransform>
+   <Path Data="M100.0,41.5 201,0.5 302,115 157.25,153, 0,0 z" Fill="#FFF4F4F5" Stroke="Black" UseLayoutRounding="False" Loaded="Path_Loaded" Stretch="Fill" Height="312" VerticalAlignment="Bottom"/>
+    </Grid>
+ 
+</Window>
