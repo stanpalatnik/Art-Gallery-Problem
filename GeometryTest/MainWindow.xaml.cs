@@ -37,5 +37,25 @@ namespace GeometryTest
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
         }
+
+        private void Create_Polygon_From_File(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Calculate_Vertex_Guards(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Save_Calculated_Data_To_Output(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Remove_Data(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

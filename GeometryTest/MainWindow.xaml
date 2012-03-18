@@ -1,11 +1,22 @@
 ﻿<Window x:Class="GeometryTest.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Art Gallery Problem Solver" Height="500" Width="800"
+        Title="Art Gallery Problem Solver" Height="500" Width="1000"
          Icon="Resources/galleryIcon.png" Style="{StaticResource WindowGlassStyle}"
         ResizeMode="NoResize">
+    <Window.Resources>
+        <Color x:Key="Color1">#FF09A43A</Color>
+    </Window.Resources>
     <DockPanel Margin="5,5,5,5" >
-    <Grid x:Name="LayoutRoot" Background="{StaticResource ListBackgroundBrush}" Loaded="LayoutRoot_Loaded">
+        <StackPanel>
+            <TextBlock Margin="10" FontSize="20">Commands</TextBlock>
+            <Button Margin="10" Click="Create_Polygon_From_File">Supply Input File</Button>
+            <Button Margin="10" Click="Calculate_Vertex_Guards">Calcuate Guards</Button>
+            <Button Margin="10" IsEnabled="False" Click="Save_Calculated_Data_To_Output" ToolTip="Saves the result of the Art Gallery Calcuation to an output file.">Save To Output File</Button>
+            <Button Margin="10" Click="Remove_Data">Clear Data</Button>
+        </StackPanel>
+
+        <Grid x:Name="LayoutRoot" Background="{StaticResource ListBackgroundBrush}" Loaded="LayoutRoot_Loaded">
         <!-- Invert the grid's Y coordinates to represent positioning of coordinates. -->
         <Grid.LayoutTransform>
             <ScaleTransform ScaleY="-1"/>
