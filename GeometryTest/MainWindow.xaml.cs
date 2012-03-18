@@ -36,7 +36,6 @@ namespace GeometryTest
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }

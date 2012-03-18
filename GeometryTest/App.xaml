@@ -7,6 +7,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="background.xaml"/>
+                <ResourceDictionary Source="Styling.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

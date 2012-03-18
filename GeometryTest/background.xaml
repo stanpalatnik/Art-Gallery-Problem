@@ -3,7 +3,6 @@
     <DrawingBrush x:Key="ListBackgroundBrush" Viewport="0,0,100,100" ViewportUnits="Absolute" TileMode="Tile">
     <DrawingBrush.Drawing>
         <DrawingGroup>
-
             <!-- Geometry for the 10px squares -->
             <GeometryDrawing Brush="White">
                 <GeometryDrawing.Geometry>
@@ -46,7 +45,6 @@
                     <Pen Thickness="0.5" Brush="Blue" />
                 </GeometryDrawing.Pen>
             </GeometryDrawing>
-
         </DrawingGroup>
     </DrawingBrush.Drawing>
 </DrawingBrush> 
