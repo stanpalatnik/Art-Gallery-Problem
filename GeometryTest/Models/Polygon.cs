@@ -8,5 +8,6 @@ namespace GeometryTest
 {
     class Polygon
     {
+        List<CoordinatePoint> vertices = new List<CoordinatePoint>();
     }
 }

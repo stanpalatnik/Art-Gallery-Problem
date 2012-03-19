@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,7 +41,21 @@ namespace GeometryTest
 
         private void Create_Polygon_From_File(object sender, RoutedEventArgs e)
         {
-
+            Polygon p1 = new Polygon();
+            if (!File.Exists("input.txt"))
+            {
+                Console.WriteLine("input.txt does not exist.");
+                return;
+            }
+            using (StreamReader sr = File.OpenText("input.txt"))
+            {
+                String input;
+                while ((input = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(input);
+                }
+                Console.WriteLine("The end of the stream has been reached.");
+            }
         }
 
         private void Calculate_Vertex_Guards(object sender, RoutedEventArgs e)
