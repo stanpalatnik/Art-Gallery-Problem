@@ -26,6 +26,8 @@ namespace GeometryTest
             InitializeComponent();
         }
 
+        Polygon p1 = Polygon.Instance;
+
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
         }
@@ -41,20 +43,20 @@ namespace GeometryTest
 
         private void Create_Polygon_From_File(object sender, RoutedEventArgs e)
         {
-            Polygon p1 = new Polygon();
-            if (!File.Exists("input.txt"))
+            // Configure open file dialog box
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "Document"; // Default file name
+            dlg.DefaultExt = ".txt"; // Default file extension
+            dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
+
+            // Show open file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process open file dialog box results
+            if (result == true)
             {
-                Console.WriteLine("input.txt does not exist.");
-                return;
-            }
-            using (StreamReader sr = File.OpenText("input.txt"))
-            {
-                String input;
-                while ((input = sr.ReadLine()) != null)
-                {
-                    Console.WriteLine(input);
-                }
-                Console.WriteLine("The end of the stream has been reached.");
+                // Open document
+                p1.readCoordinateFile(dlg.FileName);
             }
         }
 

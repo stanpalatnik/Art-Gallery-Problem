@@ -8,14 +8,15 @@ namespace GeometryTest
 {
     class CoordinatePoint
     {
-        private int Xcoord{ get;set;}
-        private int Ycoord { get; set; }
-        private enum color { Blue, Red, Yellow };
+        public short Xcoord { get; set; }
+        public short Ycoord { get; set; }
+        public enum color { Blue, Red, Yellow };
+        public color vertexColor { get; set; }
 
-        public enum getColor(){
-            return this.color;
-          }
-
-        public void setColor(enumCo
+        public CoordinatePoint(short x, short y)
+        {
+            this.Xcoord = x;
+            this.Ycoord = y;
+        }
     }
 }

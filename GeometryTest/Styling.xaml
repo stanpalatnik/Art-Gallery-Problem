@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:GeometryTest"
                     xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell">
-    <!-- This is the Glass Style we want to use for our application main window in order to place buttons on the title bar. -->
     <Style x:Key="WindowGlassStyle" TargetType="{x:Type local:MainWindow}">
         <Setter Property="shell:WindowChrome.WindowChrome">
             <Setter.Value>
