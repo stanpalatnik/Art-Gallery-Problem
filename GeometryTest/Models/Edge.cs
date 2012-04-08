@@ -9,19 +9,19 @@ namespace GeometryTest.Models
 {
     class Edge
     {
-        Point strt;
-        Point nd;
+        Point start;
+        Point end;
         Point cutoff;
 
         public Edge(Point p1, Point p2)
         {
-            strt = p1;
-            nd = p2;
+            start = p1;
+            end = p2;
         }
         public Edge(Point p1, Point p2, Point cut)
         {
-            strt = p1;
-            nd = p2;
+            start = p1;
+            end = p2;
             cutoff = cut;
         }
         public Point getCutPnt()
@@ -30,11 +30,11 @@ namespace GeometryTest.Models
         }
         public Point getEnd()
         {
-            return nd;
+            return end;
         }
         public Point getStart()
         {
-            return strt;
+            return start;
         }
     }
 }

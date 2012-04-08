@@ -22,11 +22,11 @@ namespace GeometryTest.Models
         {
             return dSet[i];
         }
-        int getSize()
+        public int getSize()
         {
             return size;
         }
-        int isInDiagSet(Point a, Point b)
+        public int isInDiagSet(Point a, Point b)
         {
             for (int i = 0; i < size; i++)
             {
@@ -43,7 +43,7 @@ namespace GeometryTest.Models
             }
             return -1;
         }
-        DiagonalSet merge(DiagonalSet d2)
+        public DiagonalSet merge(DiagonalSet d2)
         {
             int d2size = d2.getSize();
             int i = size;

@@ -14,24 +14,16 @@ namespace GeometryTest
     {
 
         private static readonly Polygon instance = new Polygon();
-        public ObservableCollection<ColoredPoint> vertices { get; set; }
+        public ObservableCollection<ColoredPoint> vertices { get;
+            set
+            {
+                vertices = value;
+                OnPropertyChanged("Vertices");
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         bool closed = false;
         bool clockwise = true;
-
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            if (this.PropertyChanged != null)
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        private Polygon()
-        {
-            vertices = new ObservableCollection<ColoredPoint>();
-        }
 
         public static Polygon Instance
         {
@@ -39,6 +31,24 @@ namespace GeometryTest
             {
                 return instance;
             }
+        }
+        private Polygon()
+        {
+            vertices = new ObservableCollection<ColoredPoint>();
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }     
+
+        public void AddVertex(ColoredPoint vertex)
+        {
+            this.vertices.Add(vertex);
+            OnPropertyChanged("Vertices");
         }
 
         internal void readCoordinateFile(string inputFile)
@@ -56,7 +66,7 @@ namespace GeometryTest
                             throw new FormatException("Length: " + words.Length.ToString());
                         }
                         ColoredPoint c1 = new ColoredPoint(Convert.ToDouble(words[0]), Convert.ToDouble(words[1]));
-                        this.vertices.Add(c1);
+                        this.AddVertex(c1);
                     }
                 }
             }
@@ -92,7 +102,7 @@ namespace GeometryTest
 
         }
 
-        public class PointCollectionConverter2 : System.Windows.Data.IValueConverter
+        public class PointCollectionConverter : System.Windows.Data.IValueConverter
         {
             public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
             {

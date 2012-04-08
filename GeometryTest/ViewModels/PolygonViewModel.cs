@@ -8,5 +8,6 @@ namespace GeometryTest
 {
     class PolygonViewModel
     {
+        //handle user interaction?
     }
 }
