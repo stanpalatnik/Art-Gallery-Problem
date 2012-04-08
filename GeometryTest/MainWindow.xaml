@@ -5,7 +5,8 @@
          Icon="Resources/galleryIcon.png" Style="{StaticResource WindowGlassStyle}"
         ResizeMode="NoResize">
     <Window.Resources>
-        <Polygon x:Key="src"/>       
+        <Polygon x:Key="src"/>
+        <PointCollectionConverter x:Key="pointCollectionConverter"/>
         <Color x:Key="Color1">#FF09A43A</Color>
     </Window.Resources>
 
@@ -21,6 +22,7 @@
 
         <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" Margin="0,0,0,46" Width="848">
             <Grid x:Name="LayoutRoot" Background="{DynamicResource ListBackgroundBrush}">
+                <!-- Invert the grid's Y coordinates to represent positioning of coordinates. -->
                 <Grid.LayoutTransform>
                     <ScaleTransform ScaleY="-1"/>
                 </Grid.LayoutTransform>
@@ -31,9 +33,7 @@
                         <GradientStop Color="White" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.OpacityMask>
-                <!-- Invert the grid's Y coordinates to represent positioning of coordinates. -->
-
-                    <Polygon Points="{Binding vertices}" Stretch="None"
+                    <Polygon Points="{Binding vertices, Converter={StaticResource pointCollectionConverter}}" Stretch="None"
     Stroke="Black" StrokeThickness="2" Fill="#7EBB9A" Loaded="Polygon_Loaded" />
                 <Path Fill="Gold" Stroke="Black" StrokeThickness="1">
                     <Path.Data>
