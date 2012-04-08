@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace GeometryTest
 {
-    class Polygon : System.ComponentModel.INotifyPropertyChanged
+    class Polygon : System.ComponentModel.INotifyPropertyChanged, System.Dynamic.IDynamicMetaObjectProvider
     {
 
         private static readonly Polygon instance = new Polygon();
