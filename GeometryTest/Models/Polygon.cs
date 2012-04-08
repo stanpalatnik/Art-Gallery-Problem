@@ -16,6 +16,8 @@ namespace GeometryTest
         private static readonly Polygon instance = new Polygon();
         public ObservableCollection<ColoredPoint> vertices { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
+        bool closed = false;
+        bool clockwise = true;
 
 
         private void OnPropertyChanged(string propertyName)

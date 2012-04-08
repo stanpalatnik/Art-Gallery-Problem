@@ -13,10 +13,14 @@ namespace GeometryTest
         public Point point;
         public enum color { Blue, Red, Yellow };
         public color vertexColor { get; set; }
+        public int index;
+        public bool isGuard;
 
         public ColoredPoint(double x, double y)
         {
             point = new Point(x, y);
+            index = -1;
+            isGuard = false;
         }
     }
 }
