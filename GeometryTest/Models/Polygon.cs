@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -8,16 +10,25 @@ using System.Windows;
 
 namespace GeometryTest
 {
-    class Polygon
+    class Polygon : System.ComponentModel.INotifyPropertyChanged
     {
 
         private static readonly Polygon instance = new Polygon();
+        public ObservableCollection<ColoredPoint> vertices { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public List<CoordinatePoint> vertices {get; set;}
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
 
         private Polygon()
         {
-            vertices = new List<CoordinatePoint>();
+            vertices = new ObservableCollection<ColoredPoint>();
         }
 
         public static Polygon Instance
@@ -37,12 +48,12 @@ namespace GeometryTest
                     String input;
                     while ((input = sr.ReadLine()) != null)
                     {
-                        string[] words = input.Split(' ');
+                        String[] words = input.Split(',');
                         if (words.Length > 2)
                         {
-                            throw new FormatException();
+                            throw new FormatException("Length: " + words.Length.ToString());
                         }
-                        CoordinatePoint c1 = new CoordinatePoint(Convert.ToInt16(words[0]), Convert.ToInt16(words[1]));
+                        ColoredPoint c1 = new ColoredPoint(Convert.ToDouble(words[0]), Convert.ToDouble(words[1]));
                         this.vertices.Add(c1);
                     }
                 }
@@ -63,13 +74,20 @@ namespace GeometryTest
             StringBuilder input = new StringBuilder();
             if (vertices.Count != 0)
             {
-                foreach (CoordinatePoint vertex in vertices)
+                foreach (ColoredPoint vertex in vertices)
                 {
-                    input.Append("X: ").Append(vertex.Xcoord).Append(" Y: ").Append(vertex.Ycoord);
+                    input.Append("X: ").Append(vertex.point.X).Append(" Y: ").Append(vertex.point.Y);
                 }
             }
 
             return input.ToString();
+        }
+
+        internal void flushData()
+        {
+            vertices.Clear();
+            //reset button states
+
         }
     }
 }

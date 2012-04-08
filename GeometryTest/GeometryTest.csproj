@@ -67,7 +67,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\CoordinatePoint.cs" />
+    <Compile Include="Models\ColoredPoint.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -79,6 +79,8 @@
   <ItemGroup>
     <Compile Include="Models\Polygon.cs" />
     <Compile Include="Models\PolygonViewModel.cs" />
+    <Compile Include="Models\Triangulation.cs" />
+    <Compile Include="Models\TriangulationColoring.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

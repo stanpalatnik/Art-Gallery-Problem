@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace GeometryTest
 {
-    class CoordinatePoint
+    //This class adds a color proprety to a coordinate point using the behavior design
+    class ColoredPoint
     {
-        public short Xcoord { get; set; }
-        public short Ycoord { get; set; }
+        public Point point;
         public enum color { Blue, Red, Yellow };
         public color vertexColor { get; set; }
 
-        public CoordinatePoint(short x, short y)
+        public ColoredPoint(double x, double y)
         {
-            this.Xcoord = x;
-            this.Ycoord = y;
+            point = new Point(x, y);
         }
     }
 }

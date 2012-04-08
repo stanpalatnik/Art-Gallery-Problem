@@ -57,6 +57,12 @@ namespace GeometryTest
             {
                 // Open document
                 p1.readCoordinateFile(dlg.FileName);
+                if (p1.vertices.Count != 0)
+                {
+                    print_input_file.IsEnabled = true;
+                    calculate_guards.IsEnabled = true;
+                    save_to_output.IsEnabled = true;
+                }
             }
         }
 
@@ -67,10 +73,29 @@ namespace GeometryTest
 
         private void Save_Calculated_Data_To_Output(object sender, RoutedEventArgs e)
         {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.DefaultExt = ".txt";
+            dlg.Filter = "Text documents (.txt)|*.txt";
+            if (dlg.ShowDialog() == true)
+            {
+                string filename = dlg.FileName;
+                using (StreamWriter sw = new StreamWriter(filename))
+                {
+                    sw.WriteAsync(p1.getInputCoordinates());
+                }
+            }
 
+            
         }
 
         private void Remove_Data(object sender, RoutedEventArgs e)
+        {
+            p1.flushData();
+            //reset button states
+            print_input_file.IsEnabled = false;
+        }
+
+        private void Polygon_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
