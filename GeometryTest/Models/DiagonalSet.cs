@@ -13,12 +13,12 @@ namespace GeometryTest.Models
         public int size = 0;
 
         public DiagonalSet() { }
-        void addDiagonal(Point i, Point j, Point cutOff)
+        public void addDiagonal(Point i, Point j, Point cutOff)
         {
             dSet[size] = new Edge(i, j, cutOff);
             size++;
         }
-        Edge getDiagonal(int i)
+        public Edge getDiagonal(int i)
         {
             return dSet[i];
         }

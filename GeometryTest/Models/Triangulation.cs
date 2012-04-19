@@ -10,20 +10,20 @@ namespace GeometryTest.Models
     class Triangulation {
 
     public Triangulation(){}
-    int Area2(Point p1,Point p2,Point p3)
+    double Area2(Point p1,Point p2,Point p3)
     {
-    return (p2.getX() - p1.getX()) * (p3.getY() - p1.getY()) - 
-	    (p3.getX() - p1.getX()) * (p2.getY() - p1.getY());
+    return (p2.X - p1.X) * (p3.Y - p1.Y) - 
+	    (p3.X - p1.X) * (p2.Y - p1.Y);
     }
     bool between(Point p1,Point p2,Point p3)
     {
 
     if (! collinear(p1,p2,p3)) return false;
-    if (p1.getX() != p2.getX())
-	    return ((p1.getX() <= p3.getX()) && (p3.getX() <= p2.getX()) ||
-		    ((p1.getX() >= p3.getX()) && (p3.getX() >= p2.getX())));
-    else return ((p1.getY() <= p3.getY()) && (p3.getY() <= p2.getY()) ||
-		    ((p1.getY() >= p3.getY()) && (p3.getY() >= p2.getY())));
+    if (p1.X != p2.X)
+	    return ((p1.X <= p3.X) && (p3.X <= p2.X) ||
+		    ((p1.X >= p3.X) && (p3.X >= p2.X)));
+    else return ((p1.Y <= p3.Y) && (p3.Y <= p2.Y) ||
+		    ((p1.Y >= p3.Y) && (p3.Y >= p2.Y)));
     }
     void clipEar(int i1,Polygon P)
     {
