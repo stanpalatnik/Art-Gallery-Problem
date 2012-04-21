@@ -9,30 +9,30 @@ namespace GeometryTest.Models
 {
     class Edge
     {
-        Point start;
-        Point end;
-        Point cutoff;
+        ColoredPoint start;
+        ColoredPoint end;
+        ColoredPoint cutoff;
 
-        public Edge(Point p1, Point p2)
+        public Edge(ColoredPoint p1, ColoredPoint p2)
         {
             start = p1;
             end = p2;
         }
-        public Edge(Point p1, Point p2, Point cut)
+        public Edge(ColoredPoint p1, ColoredPoint p2, ColoredPoint cut)
         {
             start = p1;
             end = p2;
             cutoff = cut;
         }
-        public Point getCutPnt()
+        public ColoredPoint getCutPnt()
         {
             return cutoff;
         }
-        public Point getEnd()
+        public ColoredPoint getEnd()
         {
             return end;
         }
-        public Point getStart()
+        public ColoredPoint getStart()
         {
             return start;
         }

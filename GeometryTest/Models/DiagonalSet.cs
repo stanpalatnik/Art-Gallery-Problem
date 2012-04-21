@@ -13,7 +13,7 @@ namespace GeometryTest.Models
         public int size = 0;
 
         public DiagonalSet() { }
-        public void addDiagonal(Point i, Point j, Point cutOff)
+        public void addDiagonal(ColoredPoint i, ColoredPoint j, ColoredPoint cutOff)
         {
             dSet[size] = new Edge(i, j, cutOff);
             size++;
@@ -26,19 +26,19 @@ namespace GeometryTest.Models
         {
             return size;
         }
-        public int isInDiagSet(Point a, Point b)
+        public int isInDiagSet(ColoredPoint a, ColoredPoint b)
         {
             for (int i = 0; i < size; i++)
             {
-                if (((dSet[i].getStart().X == a.X) &&
-                  (dSet[i].getStart().Y == a.Y) &&
-                  (dSet[i].getEnd().X == b.X) &&
-                  (dSet[i].getEnd().Y == b.Y))
+                if (((dSet[i].getStart().point.X == a.point.X) &&
+                  (dSet[i].getStart().point.Y == a.point.Y) &&
+                  (dSet[i].getEnd().point.X == b.point.X) &&
+                  (dSet[i].getEnd().point.Y == b.point.Y))
                   ||
-                  ((dSet[i].getEnd().X == a.X) &&
-                  (dSet[i].getEnd().Y == a.Y) &&
-                  (dSet[i].getStart().X == b.X) &&
-                  (dSet[i].getStart().Y == b.Y)))
+                  ((dSet[i].getEnd().point.X == a.point.X) &&
+                  (dSet[i].getEnd().point.Y == a.point.Y) &&
+                  (dSet[i].getStart().point.X == b.point.X) &&
+                  (dSet[i].getStart().point.Y == b.point.Y)))
                     return i;
             }
             return -1;

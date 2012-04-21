@@ -13,9 +13,10 @@ namespace GeometryTest
 {
     class Polygon : System.ComponentModel.INotifyPropertyChanged
     {
-
         private static readonly Polygon instance = new Polygon();
-        public ObservableCollection<ColoredPoint> vertices { get;
+        public ObservableCollection<ColoredPoint> vertices 
+        {         
+            get;
             set
             {
                 vertices = value;
@@ -130,12 +131,12 @@ namespace GeometryTest
             for (int i = 0; i < d.size; i++)
             {
                 tmp = d.getDiagonal(i);
-                link(tmp.getStart().getIndex(), tmp.getEnd().getIndex());
+                link(tmp.getStart().index, tmp.getEnd().index);
             }
             return;
         }
 
-        void addPnt(Point p)
+        public void addPnt(Point p)
         {
             ColoredPoint c1 = new ColoredPoint(Convert.ToDouble(p.X), Convert.ToDouble(p.Y));
             if (clockwise)
@@ -146,38 +147,38 @@ namespace GeometryTest
                     if (vertices.Count != 2) unlink(vertices.Count - 1, 0);
                     link(vertices.Count, 0);
                 }
-                p.setIndex(vertices.Count);
-                vertices.Add(c1);
+                c1.index = vertices.Count;
             }
 
             else
             {
-               // for (int i = vertices.Count; i > 0; i--)
-               // {
-               //     VSet[i] = VSet[i - 1];
-               //     VSet[i].index = i;
-               // }
+                for (int i = vertices.Count; i > 0; i--)
+                {
+                    vertices[i].index = i;
+                }
                 vertices.Insert(0, c1);
                 link(vertices.Count, vertices.Count - 1);
                 link(vertices.Count, 0);
                 unlink(vertices.Count - 1, 0);
-                VSet[0].index = 0;
+                c1.index = 0;
             }
+            vertices.Add(c1);
         }
         /**
          * @return int
          */
-        public int area()
+        public double area()
         {
             int i;
-            int currentSum = 0;
+            double currentSum = 0;
             for (i = 0; i < vertices.Count - 1; i++)
             {
-                currentSum += (VSet[i].x * VSet[i + 1].y) - (VSet[i].y * VSet[i + 1].x);
+                currentSum += (vertices[i].point.X * vertices[i + 1].point.Y) - (vertices[i].point.Y * vertices[i + 1].point.X);
             }
-            currentSum += (VSet[size - 1].x * VSet[0].y) - (VSet[size - 1].y * VSet[0].x);
+            currentSum += (vertices[vertices.Count - 1].point.X * vertices[0].point.Y) - (vertices[vertices.Count - 1].point.Y * vertices[0].point.X);
             return currentSum;
         }
+
         /**
          * @return boolean
          * @param v int
@@ -195,9 +196,9 @@ namespace GeometryTest
             closed = true;
             return;
         }
-        Point getPnt(int i)
+        public ColoredPoint getPnt(int i)
         {
-            return VSet[i];
+            return vertices[i];
         }
         /**
          * @param a int
@@ -220,10 +221,10 @@ namespace GeometryTest
 
             if (!clockwise)
             {
-                for (j = 0; j < vertices.Count - 1; j++)
+                vertices.RemoveAt(index);
+                for (int i = vertices.Count; i > 0; i--)
                 {
-                    VSet[j] = VSet[j + 1];
-                    VSet[j].index = j;
+                    vertices[i].index = i;
                 }
 
             }
@@ -233,14 +234,14 @@ namespace GeometryTest
                 for (j = d.size - 1; j >= 0; j--)
                 {
                     diag = d.getDiagonal(j);
-                    unlink(diag.getStart().getIndex(), diag.getEnd().getIndex());
+                    unlink(diag.getStart().index, diag.getEnd().index);
                 }
                 // reset the colors and remove guards
 
-                for (j = 0; j < size; j++)
+                for (j = 0; j < vertices.Count; j++)
                 {
-                    VSet[j].setColor(-1);
-                    VSet[j].guard = false;
+                    vertices[j].vertexColor = ColoredPoint.color.None;
+                    vertices[j].isGuard = false;
                 }
                 d.size = 0;
             }
@@ -251,31 +252,23 @@ namespace GeometryTest
             closed = false; // open the polygon
             return;
         }
-        void removeVertex(int i)
+        public void removeVertex(int i)
         {
-            int k;
-
-            for (k = i; k < vertices.Count - 1; k++)
-            {
-                VSet[k] = VSet[k + 1];
-            }
+            vertices.RemoveAt(i);
         }
 
         public void reverse()
         {
             // 
-            int i, j;
-            Point tmp;
             if (vertices.Count == 1) return;
             else
-                for (i = 0, j = vertices.Count - 1; i < j; i++, j--)
+            {
+                vertices.Reverse();
+                for (int i = 0; i < vertices.Count; i++)
                 {
-                    tmp = VSet[i];
-                    VSet[i] = VSet[j];
-                    VSet[j] = tmp;
-                    VSet[i].index = i;
-                    VSet[j].index = j;
+                    vertices[i].index = i;
                 }
+            }
             clockwise = !clockwise;
             return;
         }

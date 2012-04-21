@@ -33,11 +33,11 @@ namespace GeometryTest.Models
     {
     return Area2(p1,p2,p3) == 0;
     }
-    ColorSet color(diagonalSet d,Polygon p)
+    ColorSet color(DiagonalSet d,Polygon p)
     {
     ColorSet CSet = new ColorSet(); 
     Edge curDiag = d.getDiagonal(0);
-    Point a,b,cut;
+    ColoredPointPoint a,b,cut;
     int d1,d2;
     if (p.size == 3)
 	    {
@@ -53,9 +53,9 @@ namespace GeometryTest.Models
 	    return CSet;
 	    }
 
-    a = p.getPnt(curDiag.getStart().getIndex());
-    b = p.getPnt(curDiag.getEnd().getIndex());
-    cut = p.getPnt(curDiag.getCutPnt().getIndex());
+    a = p.getPnt(curDiag.getStart().index);
+    b = p.getPnt(curDiag.getEnd().index);
+    cut = p.getPnt(curDiag.getCutPnt().index);
 
 
     p.getPnt(a.getIndex()).setColor(0);
@@ -78,7 +78,7 @@ namespace GeometryTest.Models
     {
     int k;
     int k1;
-    int n= P.size;
+    int n= P.vertices.Count;
 
     for (k=0;k<n;k++) 
       {
@@ -99,7 +99,7 @@ namespace GeometryTest.Models
      */
     public Point getTriangle(int a,int b,Polygon p) {
   
-	    for (int i=0;i<p.size;i++)
+	    for (int i=0;i<p.vertices.Count;i++)
 	      {
 	      if ((i!=b) && (i!=a))
 		    {
