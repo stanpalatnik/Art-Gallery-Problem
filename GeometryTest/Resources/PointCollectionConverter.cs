@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeometryTest.Resources
+namespace GeometryTest
 {
     public class PointCollectionConverter : System.Windows.Data.IValueConverter
     {

@@ -15,8 +15,11 @@ namespace GeometryTest
     {
         private static readonly Polygon instance = new Polygon();
         public ObservableCollection<ColoredPoint> vertices 
-        {         
-            get;
+        {
+            get
+            {
+                return vertices;
+            }
             set
             {
                 vertices = value;
@@ -165,7 +168,6 @@ namespace GeometryTest
          */
         public bool areNeighbors(int v1, int v2)
         {
-
             return (adjArray[v1,v2] == 1);
         }
 
@@ -220,7 +222,7 @@ namespace GeometryTest
 
                 for (j = 0; j < vertices.Count; j++)
                 {
-                    vertices[j].vertexColor = ColoredPoint.color.None;
+                    //vertices[j].vertexColor = ColoredPoint.color.None;
                     vertices[j].isGuard = false;
                 }
             }

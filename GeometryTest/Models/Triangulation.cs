@@ -35,9 +35,9 @@ namespace GeometryTest.Models
     return Area2(p1,p2,p3) == 0;
     }
 
-    ColorSet color(DiagonalSet d,Polygon p)
+    TriangulationColoring color(DiagonalSet d, Polygon p)
     {
-    ColorSet CSet = new ColorSet(); 
+        TriangulationColoring CSet = new TriangulationColoring(); 
     Edge curDiag = d.getDiagonal(0);
     ColoredPoint a,b,cut;
     int d1,d2;
@@ -46,9 +46,9 @@ namespace GeometryTest.Models
 	    a=p.getColoredPoint(0);
 	    b=p.getColoredPoint(1);
 	    cut=p.getColoredPoint(2);
-	    a.setColor(0);
-	    b.setColor(1);
-	    cut.setColor(2);
+	    a.vertexColor = ColoredPoint.color.Blue;
+        b.vertexColor = ColoredPoint.color.Red;
+        cut.vertexColor = ColoredPoint.color.Blue;
 	    CSet.add(a);
 	    CSet.add(b);
 	    CSet.add(cut);
@@ -60,9 +60,9 @@ namespace GeometryTest.Models
     cut = p.getColoredPoint(curDiag.getCutPnt().index);
 
 
-    p.getColoredPoint(a.getIndex()).setColor(0);
-    p.getColoredPoint(b.getIndex()).setColor(1);
-    p.getColoredPoint(cut.getIndex()).setColor(2);
+    p.getColoredPoint(a.index).vertexColor = ColoredPoint.color.Blue;
+    p.getColoredPoint(b.index).vertexColor = ColoredPoint.color.Red;
+    p.getColoredPoint(cut.index).vertexColor = ColoredPoint.color.Blue;
 
     CSet.add(a);
     CSet.add(b);
@@ -105,7 +105,7 @@ namespace GeometryTest.Models
 	      {
 	      if ((i!=b) && (i!=a))
 		    {
-			    if (p.areNeighbors(a,i) && p.areNeighbors(b,i) && (p.getColoredPoint(i).getColor()==-1))
+			    if (p.areNeighbors(a,i) && p.areNeighbors(b,i) && (p.getColoredPoint(i).vertexColor == 0))
 			    {
 				    return p.getColoredPoint(i);
 			    }
@@ -165,62 +165,64 @@ namespace GeometryTest.Models
     else if ((c1 + c2) ==2) return 1;
     else return 0;
     }
-    ColorSet recurseColor(DiagonalSet d,Polygon p,int i)
+    TriangulationColoring recurseColor(DiagonalSet d, Polygon p, int i)
     {
-    ColorSet CSet = new ColorSet(); 
-    Edge curDiag = d.getDiagonal(i);
-    ColoredPoint a,b,cut;
-    int d1,d2;
+        TriangulationColoring CSet = new TriangulationColoring(); 
+        Edge curDiag = d.getDiagonal(i);
+        ColoredPoint a,b,cut;
+        int d1,d2;
 
-    a = p.getColoredPoint(curDiag.getStart().index);
-    b = p.getColoredPoint(curDiag.getEnd().index);
-    cut = p.getColoredPoint(curDiag.getCutPnt().index);
+        a = p.getColoredPoint(curDiag.getStart().index);
+        b = p.getColoredPoint(curDiag.getEnd().index);
+        cut = p.getColoredPoint(curDiag.getCutPnt().index);
 
-    if (cut.getColor() == -1) // point has not been colored
-    {
-        p.getColoredPoint(cut.index).setColor(nextColor(a.index, b.index));
-    CSet.add(cut);
-    if ((d1 = d.isInDiagSet(a,cut)) != -1) CSet.add(recurseColor(d,p,d1));
-    if ((d2 = d.isInDiagSet(b,cut)) != -1) CSet.add(recurseColor(d,p,d2));
+        if ((int)cut.vertexColor == 0) // point has not been colored
+        {
+            p.getColoredPoint(cut.index).vertexColor = (GeometryTest.ColoredPoint.color)nextColor(a.index, b.index);
+            CSet.add(cut);
+            if ((d1 = d.isInDiagSet(a,cut)) != -1) 
+                CSet.add(recurseColor(d,p,d1));
+            if ((d2 = d.isInDiagSet(b,cut)) != -1) 
+                CSet.add(recurseColor(d,p,d2));
+        }
+        else 
+        {
+            cut = getTriangle(a.index, b.index, p);
+        if (cut == null) 
+          {
+          return CSet;
+	        }
+        p.getColoredPoint(cut.index).vertexColor = (GeometryTest.ColoredPoint.color)nextColor((int)a.vertexColor,(int)b.vertexColor);
+        CSet.add(cut);
+        if ((d1 = d.isInDiagSet(a,cut)) != -1) CSet.add(recurseColor(d,p,d1));
+        if ((d2 = d.isInDiagSet(b,cut)) != -1) CSet.add(recurseColor(d,p,d2));
+        }
+        return CSet;
     }
-    else 
+    public DiagonalSet triangulate(Polygon P)
     {
-        cut = getTriangle(a.index, b.index, p);
-    if (cut == null) 
-      {
-      return CSet;
-	    }
-    p.getColoredPoint(cut.index).setColor(nextColor(a.getColor(),b.getColor()));
-    CSet.add(cut);
-    if ((d1 = d.isInDiagSet(a,cut)) != -1) CSet.add(recurseColor(d,p,d1));
-    if ((d2 = d.isInDiagSet(b,cut)) != -1) CSet.add(recurseColor(d,p,d2));
-    }
-    return CSet;
-    }
-    public DiagonalSet triangulate(Polygon P,Graphics g)
-    {
-    DiagonalSet d = new DiagonalSet();
-    int i,i1,i2;
-    int n = P.vertices.Count;
-    if (n>=3)
-       for (i=0;i<n;i++)
-	    {
-	    i1 = (i+1) % n;
-	    i2 = (i+2) % n;
-	    if (isDiagonal(i,i2,P,g))
-	    {
-	    d.addDiagonal(P.getColoredPoint(i),P.getColoredPoint(i2),P.getColoredPoint(i1));
-	    clipEar(i1,P);
-	    return d.merge(triangulate(P,g));
-	    }
-	    }
-    return d;
+        DiagonalSet d = new DiagonalSet();
+        int i,i1,i2;
+        int n = P.vertices.Count;
+        if (n>=3)
+           for (i=0;i<n;i++)
+	        {
+	            i1 = (i+1) % n;
+	            i2 = (i+2) % n;
+	            if (isDiagonal(i,i2,P))
+	            {
+	            d.addDiagonal(P.getColoredPoint(i),P.getColoredPoint(i2),P.getColoredPoint(i1));
+	            clipEar(i1,P);
+	            return d.merge(triangulate(P));
+	            }
+	        }
+        return d;
     }
 
     bool Xor(bool a,bool b)
     {
-    if ((a && b) || (!a && !b)) return false;
-    return true;
-    }
+        if ((a && b) || (!a && !b)) return false;
+        return true;
+        }
     }
 }

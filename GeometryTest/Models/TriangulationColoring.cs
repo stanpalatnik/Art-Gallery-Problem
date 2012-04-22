@@ -8,5 +8,52 @@ namespace GeometryTest.Models
 {
     class TriangulationColoring
     {
+        const int MAX_COLORS = 3;
+        int[] vertexColors = new int[MAX_COLORS];
+
+        internal void setupColors()
+        {
+
+        }
+
+        public void add(ColoredPoint p)
+        {
+            vertexColors[(int)p.vertexColor]++;
+        }
+
+        public void add(TriangulationColoring CSet)
+        {
+            if (CSet != null)
+                vertexColors = CSet.vertexColors;
+        }
+
+        /**
+        * This method was created by a SmartGuide.
+        * @return int
+        */
+        internal int getMinColorClass()
+        {
+            int min = 1;
+            if (vertexColors[min] > vertexColors[2]) min = 2;
+            if (vertexColors[min] > vertexColors[2]) min = 3;
+            return min;
+        }
+        /**
+         * This method was created by a SmartGuide.
+         */
+        public void setGuards(Polygon p)
+        {
+            int curColor = 0;
+            int minColorClass = getMinColorClass();
+            for (int j = 0; j < p.vertices.Count; j++)
+            {
+                curColor = (int)p.vertices[j].vertexColor;
+                if (curColor == minColorClass)
+                {
+                    p.vertices[j].isGuard = true;
+                }
+            }
+            return;
+        }
     }
 }
