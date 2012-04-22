@@ -31,10 +31,6 @@ namespace GeometryTest
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-        }
-
-        private void Path_Loaded(object sender, RoutedEventArgs e)
-        {
 
         }
 
@@ -69,8 +65,14 @@ namespace GeometryTest
 
         private void Calculate_Vertex_Guards(object sender, RoutedEventArgs e)
         {
-            Triangulation t1 = new Triangulation();
-            DiagonalSet d1 = t1.triangulate(p1);
+            GeometryGroup myGeometryGroup = new GeometryGroup();
+            EllipseGeometry myEllipseGeometry = new EllipseGeometry();
+            myEllipseGeometry.Center = new Point(100, 45);
+            myEllipseGeometry.RadiusX = 4;
+            myEllipseGeometry.RadiusY = 4;
+            myGeometryGroup.Children.Add(myEllipseGeometry);
+            //Triangulation t1 = new Triangulation();
+            //DiagonalSet d1 = t1.triangulate(p1);
         }
 
         private void Save_Calculated_Data_To_Output(object sender, RoutedEventArgs e)
@@ -99,6 +101,11 @@ namespace GeometryTest
         }
 
         private void Polygon_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SubLayout_Loaded(object sender, RoutedEventArgs e)
         {
 
         }

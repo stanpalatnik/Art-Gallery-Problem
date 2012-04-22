@@ -20,7 +20,7 @@ namespace GeometryTest
         {
             point = new Point(x, y);
             index = 0;
-            isGuard = false;
+            isGuard = true;
         }
     }
 }

@@ -57,7 +57,9 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="Resources\GuardPathGeometryConverter.cs" />
     <Compile Include="Resources\PointCollectionConverter.cs" />
+    <Compile Include="Resources\PointPathGeometryConverter.cs" />
     <Page Include="background.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

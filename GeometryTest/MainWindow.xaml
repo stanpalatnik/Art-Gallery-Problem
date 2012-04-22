@@ -7,6 +7,8 @@
         ResizeMode="NoResize">
     <Window.Resources>
         <local:PointCollectionConverter x:Key="pointCollectionConverter"/>
+        <local:PointPathGeometryConverter x:Key="pointPathGeometryConverter"/>
+        <local:GuardPathGeometryConverter x:Key="guardPathGeometryConverter"/>
         <Color x:Key="Color1">#FF09A43A</Color>
     </Window.Resources>
 
@@ -29,7 +31,7 @@
                 <Grid.LayoutTransform>
                     <ScaleTransform ScaleY="-1"/>
                 </Grid.LayoutTransform>
-                <Grid Loaded="LayoutRoot_Loaded" Margin="144,140,112,136">
+                <Grid x:Name="SubLayout" Margin="144,140,112,136" Loaded="SubLayout_Loaded">
                     <Grid.OpacityMask>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0"/>
@@ -37,11 +39,10 @@
                         </LinearGradientBrush>
                     </Grid.OpacityMask>
                     <Polygon Points="{Binding vertices, Converter={StaticResource pointCollectionConverter}}" Stretch="None"
-    Stroke="Black" StrokeThickness="2" Fill="#7EBB9A" Loaded="Polygon_Loaded" />
-                    <Path Fill="Gold" Stroke="Black" StrokeThickness="1">
-                        <Path.Data>
-                            <EllipseGeometry Center="100,41.5" RadiusX="5" RadiusY="5"/>
-                        </Path.Data>
+    Stroke="Black" StrokeThickness="2" Fill="#7EBB9A" />
+                    <Path x:Name="points" Data="{Binding vertices, Converter={StaticResource pointPathGeometryConverter}}" Fill="Green" Stroke="Black" StrokeThickness="1">
+                    </Path>
+                    <Path x:Name="guards" Data="{Binding vertices, Converter={StaticResource guardPathGeometryConverter}}" Fill="Red" Stroke="Black" StrokeThickness="1">
                     </Path>
                 </Grid>
                 <Line X1="141" Y1="0" X2="141" Y2="700"
