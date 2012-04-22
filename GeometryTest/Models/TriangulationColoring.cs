@@ -11,9 +11,12 @@ namespace GeometryTest.Models
         const int MAX_COLORS = 3;
         int[] vertexColors = new int[MAX_COLORS];
 
-        internal void setupColors()
+        internal void setupColors(Polygon p)
         {
-
+            foreach (ColoredPoint p1 in p.vertices)
+            {
+                vertexColors[(int)p1.vertexColor]++;
+            }
         }
 
         public void add(ColoredPoint p)
@@ -44,6 +47,7 @@ namespace GeometryTest.Models
         public void setGuards(Polygon p)
         {
             int curColor = 0;
+            setupColors(p);
             int minColorClass = getMinColorClass();
             for (int j = 0; j < p.vertices.Count; j++)
             {

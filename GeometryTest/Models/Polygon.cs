@@ -19,10 +19,10 @@ namespace GeometryTest
             get;
             set;
         }
-        int[,] adjArray = new int[50, 50];
+        public int[,] adjArray = new int[50, 50];
         public event PropertyChangedEventHandler PropertyChanged;
-        bool closed = false;
-        bool clockwise = true;
+        public bool closed { get; set; }
+        public bool clockwise = true;
 
         public static Polygon Instance
         {
@@ -34,6 +34,7 @@ namespace GeometryTest
         private Polygon()
         {
             vertices = new ObservableCollection<ColoredPoint>();
+            closed = false;
         }
 
         private void OnPropertyChanged(string propertyName)
