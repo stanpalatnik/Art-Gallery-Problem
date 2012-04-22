@@ -80,7 +80,6 @@
     <Compile Include="Models\DiagonalSet.cs" />
     <Compile Include="Models\Edge.cs" />
     <Compile Include="Models\Polygon.cs" />
-    <Compile Include="Models\PolygonViewModel.cs" />
     <Compile Include="Models\Triangulation.cs" />
     <Compile Include="Models\TriangulationColoring.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
