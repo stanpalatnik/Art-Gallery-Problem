@@ -78,14 +78,19 @@ namespace GeometryTest
             dlg.Filter = "Text documents (.txt)|*.txt";
             if (dlg.ShowDialog() == true)
             {
+                //save input
                 string filename = dlg.FileName;
                 using (StreamWriter sw = new StreamWriter(filename))
                 {
                     sw.WriteAsync(p1.getInputCoordinates());
                 }
-            }
 
-            
+                //save calculated data
+                using (StreamWriter sw2 = new StreamWriter(filename))
+                {
+                    sw2.WriteAsync(p1.getCalculatedResults());
+                }
+            }         
         }
 
         private void Remove_Data(object sender, RoutedEventArgs e)

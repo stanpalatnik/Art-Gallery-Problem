@@ -100,6 +100,11 @@ namespace GeometryTest
             return input.ToString();
         }
 
+        public String getCalcultedResults()
+        {
+
+        }
+
         internal void flushData()
         {
             vertices.Clear();
