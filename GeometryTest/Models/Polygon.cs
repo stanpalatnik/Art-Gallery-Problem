@@ -47,7 +47,7 @@ namespace GeometryTest
         public void AddVertex(ColoredPoint vertex)
         {
             this.vertices.Add(vertex);
-            OnPropertyChanged("Vertices");
+            OnPropertyChanged("vertices");
         }
 
         internal void readCoordinateFile(string inputFile)
@@ -104,7 +104,7 @@ namespace GeometryTest
         internal void flushData()
         {
             vertices.Clear();
-            OnPropertyChanged("Vertices");
+            OnPropertyChanged("vertices");
         }
 
         public void addDiagonals(GeometryTest.Models.DiagonalSet d)
@@ -144,7 +144,7 @@ namespace GeometryTest
                 unlink(vertices.Count - 1, 0);
                 c1.index = 0;
             }
-            OnPropertyChanged("Vertices");
+            OnPropertyChanged("vertices");
             vertices.Add(c1);
         }
         /**
@@ -236,7 +236,7 @@ namespace GeometryTest
         public void removeVertex(int i)
         {
             vertices.RemoveAt(i);
-            OnPropertyChanged("Vertices");
+            OnPropertyChanged("vertices");
         }
 
         public void reverse()

@@ -6,7 +6,7 @@
          Icon="Resources/galleryIcon.png" Style="{StaticResource WindowGlassStyle}"
         ResizeMode="NoResize">
     <Window.Resources>
-        <Polygon x:Key="src"/>
+        <local:Polygon x:Key="polygon"/>
         <local:PointCollectionConverter x:Key="pointCollectionConverter"/>
         <Color x:Key="Color1">#FF09A43A</Color>
     </Window.Resources>
@@ -22,6 +22,9 @@
         </StackPanel>
 
         <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" Margin="0,0,0,46" Width="848">
+            <DockPanel.DataContext>
+                <Binding Source="{StaticResource polygon}"/>
+            </DockPanel.DataContext>
             <Grid x:Name="LayoutRoot" Background="{DynamicResource ListBackgroundBrush}">
                 <!-- Invert the grid's Y coordinates to represent positioning of coordinates. -->
                 <Grid.LayoutTransform>
