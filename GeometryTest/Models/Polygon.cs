@@ -23,7 +23,6 @@ namespace GeometryTest
             set
             {
                 vertices = value;
-                OnPropertyChanged("Vertices");
             }
         }
         int[,] adjArray = new int[50,50];
@@ -145,6 +144,7 @@ namespace GeometryTest
                 unlink(vertices.Count - 1, 0);
                 c1.index = 0;
             }
+            OnPropertyChanged("Vertices");
             vertices.Add(c1);
         }
         /**
@@ -236,6 +236,7 @@ namespace GeometryTest
         public void removeVertex(int i)
         {
             vertices.RemoveAt(i);
+            OnPropertyChanged("Vertices");
         }
 
         public void reverse()
