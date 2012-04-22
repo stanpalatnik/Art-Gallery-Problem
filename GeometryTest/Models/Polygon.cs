@@ -14,18 +14,12 @@ namespace GeometryTest
     class Polygon : System.ComponentModel.INotifyPropertyChanged
     {
         private static readonly Polygon instance = new Polygon();
-        public ObservableCollection<ColoredPoint> vertices 
+        public ObservableCollection<ColoredPoint> vertices
         {
-            get
-            {
-                return vertices;
-            }
-            set
-            {
-                vertices = value;
-            }
+            get;
+            set;
         }
-        int[,] adjArray = new int[50,50];
+        int[,] adjArray = new int[50, 50];
         public event PropertyChangedEventHandler PropertyChanged;
         bool closed = false;
         bool clockwise = true;
@@ -48,7 +42,7 @@ namespace GeometryTest
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
-        }     
+        }
 
         public void AddVertex(ColoredPoint vertex)
         {
@@ -86,6 +80,7 @@ namespace GeometryTest
                 return;
             }
         }
+
         public String getInputCoordinates()
         {
             StringBuilder input = new StringBuilder();
@@ -100,16 +95,16 @@ namespace GeometryTest
             return input.ToString();
         }
 
-        public String getCalcultedResults()
+        public String getCalculatedResults()
         {
-
+            StringBuilder rtnStr = new StringBuilder();
+            return rtnStr.ToString();
         }
 
         internal void flushData()
         {
             vertices.Clear();
-            //reset button states
-
+            OnPropertyChanged("Vertices");
         }
 
         public void addDiagonals(GeometryTest.Models.DiagonalSet d)
@@ -173,7 +168,7 @@ namespace GeometryTest
          */
         public bool areNeighbors(int v1, int v2)
         {
-            return (adjArray[v1,v2] == 1);
+            return (adjArray[v1, v2] == 1);
         }
 
         /**
@@ -193,8 +188,8 @@ namespace GeometryTest
          */
         public void link(int a, int b)
         {
-            adjArray[a,b] = 1;
-            adjArray[b,a] = 1;
+            adjArray[a, b] = 1;
+            adjArray[b, a] = 1;
             return;
         }
         /**
@@ -265,8 +260,8 @@ namespace GeometryTest
          */
         public void unlink(int a, int b)
         {
-            adjArray[a,b] = 0;
-            adjArray[b,a] = 0;
+            adjArray[a, b] = 0;
+            adjArray[b, a] = 0;
             return;
         }
     }
