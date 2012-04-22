@@ -105,30 +105,10 @@ namespace GeometryTest
 
         }
 
-        public class PointCollectionConverter : System.Windows.Data.IValueConverter
-        {
-            public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
-            {
-                if (value.GetType() == typeof(ObservableCollection<ColoredPoint>) && targetType == typeof(System.Windows.Media.PointCollection))
-                {
-                    var pointCollection = new System.Windows.Media.PointCollection();
-                    foreach (var coloredPoint in value as ObservableCollection<ColoredPoint>)
-                        pointCollection.Add(coloredPoint.point);
-                    return pointCollection;
-                }
-                return null;
-            }
-
-            public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
-            {
-                return null;
-            }
-        }
-
         public void addDiagonals(GeometryTest.Models.DiagonalSet d)
         {
             Edge tmp;
-            for (int i = 0; i < d.size; i++)
+            for (int i = 0; i < d.diagonalSet.Count; i++)
             {
                 tmp = d.getDiagonal(i);
                 link(tmp.getStart().index, tmp.getEnd().index);
@@ -196,7 +176,7 @@ namespace GeometryTest
             closed = true;
             return;
         }
-        public ColoredPoint getPnt(int i)
+        public ColoredPoint getColoredPoint(int i)
         {
             return vertices[i];
         }
@@ -231,7 +211,7 @@ namespace GeometryTest
             // remove diagonals
             if (closed)
             {
-                for (j = d.size - 1; j >= 0; j--)
+                for (j = d.diagonalSet.Count - 1; j >= 0; j--)
                 {
                     diag = d.getDiagonal(j);
                     unlink(diag.getStart().index, diag.getEnd().index);
@@ -243,7 +223,6 @@ namespace GeometryTest
                     vertices[j].vertexColor = ColoredPoint.color.None;
                     vertices[j].isGuard = false;
                 }
-                d.size = 0;
             }
 
             link(vertices.Count - 1, 0);

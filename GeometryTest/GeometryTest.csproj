@@ -57,6 +57,7 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="Resources\PointCollectionConverter.cs" />
     <Page Include="background.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

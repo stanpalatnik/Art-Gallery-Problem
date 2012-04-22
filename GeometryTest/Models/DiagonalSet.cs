@@ -9,7 +9,7 @@ namespace GeometryTest.Models
 {
     class DiagonalSet
     {
-        List<Edge> diagonalSet = new List<Edge>();
+        public List<Edge> diagonalSet = new List<Edge>();
         public DiagonalSet() { }
         public void addDiagonal(ColoredPoint i, ColoredPoint j, ColoredPoint cutOff)
         {
