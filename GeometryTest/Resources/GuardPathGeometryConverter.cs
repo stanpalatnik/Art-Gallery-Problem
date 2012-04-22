@@ -17,7 +17,7 @@ namespace GeometryTest
                 GeometryGroup myGeometryGroup = new GeometryGroup();
                 foreach (var coloredPoint in value as System.Collections.ObjectModel.ObservableCollection<ColoredPoint>)
                 {
-                    if (coloredPoint.isGuard == true)
+                    if (coloredPoint.IsGuard == true)
                     {
                         EllipseGeometry myEllipseGeometry = new EllipseGeometry();
                         myEllipseGeometry.Center = new Point(coloredPoint.point.X, coloredPoint.point.Y);

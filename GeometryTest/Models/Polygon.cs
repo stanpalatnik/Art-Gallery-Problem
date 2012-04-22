@@ -223,7 +223,7 @@ namespace GeometryTest
                 for (j = 0; j < vertices.Count; j++)
                 {
                     //vertices[j].vertexColor = ColoredPoint.color.None;
-                    vertices[j].isGuard = false;
+                    vertices[j].IsGuard = false;
                 }
             }
 

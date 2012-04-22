@@ -17,11 +17,14 @@ namespace GeometryTest
                 GeometryGroup myGeometryGroup = new GeometryGroup();
                 foreach (var coloredPoint in value as System.Collections.ObjectModel.ObservableCollection<ColoredPoint>)
                 {
-                    EllipseGeometry myEllipseGeometry = new EllipseGeometry();
-                    myEllipseGeometry.Center = new Point(coloredPoint.point.X, coloredPoint.point.Y);
-                    myEllipseGeometry.RadiusX = 4;
-                    myEllipseGeometry.RadiusY = 4;
-                    myGeometryGroup.Children.Add(myEllipseGeometry);
+                    if (coloredPoint.IsGuard == false)
+                    {
+                        EllipseGeometry myEllipseGeometry = new EllipseGeometry();
+                        myEllipseGeometry.Center = new Point(coloredPoint.point.X, coloredPoint.point.Y);
+                        myEllipseGeometry.RadiusX = 4;
+                        myEllipseGeometry.RadiusY = 4;
+                        myGeometryGroup.Children.Add(myEllipseGeometry);
+                    }   
                 }
                 return myGeometryGroup;
             }

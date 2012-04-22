@@ -65,14 +65,10 @@ namespace GeometryTest
 
         private void Calculate_Vertex_Guards(object sender, RoutedEventArgs e)
         {
-            GeometryGroup myGeometryGroup = new GeometryGroup();
-            EllipseGeometry myEllipseGeometry = new EllipseGeometry();
-            myEllipseGeometry.Center = new Point(100, 45);
-            myEllipseGeometry.RadiusX = 4;
-            myEllipseGeometry.RadiusY = 4;
-            myGeometryGroup.Children.Add(myEllipseGeometry);
-            //Triangulation t1 = new Triangulation();
+            Triangulation t1 = new Triangulation();
+            p1.vertices[0].IsGuard = true;
             //DiagonalSet d1 = t1.triangulate(p1);
+            //Triangulation t2 = new Triangulation();
         }
 
         private void Save_Calculated_Data_To_Output(object sender, RoutedEventArgs e)

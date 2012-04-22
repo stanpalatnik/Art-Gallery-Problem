@@ -50,7 +50,7 @@ namespace GeometryTest.Models
                 curColor = (int)p.vertices[j].vertexColor;
                 if (curColor == minColorClass)
                 {
-                    p.vertices[j].isGuard = true;
+                    p.vertices[j].IsGuard = true;
                 }
             }
             return;
