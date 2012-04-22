@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GeometryTest.Models;
 
 namespace GeometryTest
 {
@@ -68,7 +69,8 @@ namespace GeometryTest
 
         private void Calculate_Vertex_Guards(object sender, RoutedEventArgs e)
         {
-
+            Triangulation t1 = new Triangulation();
+            DiagonalSet d1 = t1.triangulate(p1);
         }
 
         private void Save_Calculated_Data_To_Output(object sender, RoutedEventArgs e)
