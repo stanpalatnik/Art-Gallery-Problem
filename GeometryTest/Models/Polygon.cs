@@ -88,7 +88,7 @@ namespace GeometryTest
             {
                 foreach (ColoredPoint vertex in vertices)
                 {
-                    input.Append("X: ").Append(vertex.point.X).Append(" Y: ").Append(vertex.point.Y);
+                    input.Append("X: ").Append(vertex.point.X).Append(" Y: ").Append(vertex.point.Y).Append(Environment.NewLine);
                 }
             }
 

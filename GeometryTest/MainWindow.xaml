@@ -6,7 +6,6 @@
          Icon="Resources/galleryIcon.png" Style="{StaticResource WindowGlassStyle}"
         ResizeMode="NoResize">
     <Window.Resources>
-        <local:Polygon x:Key="polygon"/>
         <local:PointCollectionConverter x:Key="pointCollectionConverter"/>
         <Color x:Key="Color1">#FF09A43A</Color>
     </Window.Resources>

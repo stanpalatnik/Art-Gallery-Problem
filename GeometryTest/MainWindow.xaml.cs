@@ -82,13 +82,8 @@ namespace GeometryTest
                 string filename = dlg.FileName;
                 using (StreamWriter sw = new StreamWriter(filename))
                 {
-                    sw.WriteAsync(p1.getInputCoordinates());
-                }
-
-                //save calculated data
-                using (StreamWriter sw2 = new StreamWriter(filename))
-                {
-                    sw2.WriteAsync(p1.getCalculatedResults());
+                     
+                    sw.WriteLine(p1.getInputCoordinates());
                 }
             }         
         }
@@ -98,6 +93,7 @@ namespace GeometryTest
             p1.flushData();
             //reset button states
             print_input_file.IsEnabled = false;
+            calculate_guards.IsEnabled = false;
         }
 
         private void Polygon_Loaded(object sender, RoutedEventArgs e)
