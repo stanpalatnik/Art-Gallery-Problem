@@ -36,7 +36,7 @@ namespace GeometryTest.Models
             return Area2(p1, p2, p3) == 0;
         }
 
-        TriangulationColoring color(DiagonalSet d, Polygon p)
+        public TriangulationColoring color(DiagonalSet d, Polygon p)
         {
             TriangulationColoring CSet = new TriangulationColoring();
             Edge curDiag = d.getDiagonal(0);
@@ -135,7 +135,7 @@ namespace GeometryTest.Models
                 return !(LeftOn(P.getColoredPoint(i), P.getColoredPoint(j), P.getColoredPoint(i1)) && LeftOn(P.getColoredPoint(j), P.getColoredPoint(i), P.getColoredPoint(in1)));
             }
         }
-        bool intersect(ColoredPoint p1, ColoredPoint p2, ColoredPoint p3, ColoredPoint p4)
+        public bool intersect(ColoredPoint p1, ColoredPoint p2, ColoredPoint p3, ColoredPoint p4)
         {
             if (intersectProp(p1, p2, p3, p4))
                 return true;
@@ -224,6 +224,32 @@ namespace GeometryTest.Models
         bool Xor(bool a, bool b)
         {
             if ((a && b) || (!a && !b)) return false;
+            return true;
+        }
+
+        public bool noIntersection(double x1, double y1, double x2, double y2, Polygon p1)
+        {
+            ColoredPoint p2, p3;
+            p2 = new ColoredPoint(x1, y1);
+            p3 = new ColoredPoint(x2, y2);
+            if (p1.vertices.Count <= 1) return true;
+            if (p1.clockwise)
+                for (int i = 1; i < p1.vertices.Count - 2; i++)
+                {
+                    if (intersect(p2, p3, p1.vertices[i], p1.vertices[i + 1]))
+                    {
+                        return false;
+                    }
+                }
+            else
+                for (int i = p1.vertices.Count - 2; i > 1; i--)
+                {
+                    if (intersect(p2, p3, p1.vertices[i - 1], p1.vertices[i]))
+                    {
+                        return false;
+                    }
+
+                }
             return true;
         }
     }

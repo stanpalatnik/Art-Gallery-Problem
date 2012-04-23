@@ -53,6 +53,7 @@ namespace GeometryTest
 
         internal void readCoordinateFile(string inputFile)
         {
+            Triangulation triangulation = new Triangulation();
             try
             {
                 using (StreamReader sr = File.OpenText(inputFile))
@@ -66,7 +67,17 @@ namespace GeometryTest
                             throw new FormatException("Length: " + words.Length.ToString());
                         }
                         ColoredPoint c1 = new ColoredPoint(Convert.ToDouble(words[0]), Convert.ToDouble(words[1]));
-                        this.AddVertex(c1);
+
+                        if (this.vertices.Count == 0 || 
+                            triangulation.noIntersection(this.vertices[0].point.X, this.vertices[0].point.Y, c1.point.X, c1.point.Y, this))
+                        {
+                            //this.vertices.Add(c1);
+                            this.AddVertex(c1);
+                        }
+                        else
+                        {
+                            //error, we have an intersection
+                        }
                     }
                 }
             }
