@@ -276,5 +276,16 @@ namespace GeometryTest
             adjArray[b, a] = 0;
             return;
         }
+
+        internal void addDiagonalsToVertices(DiagonalSet diagonalSet)
+        {
+            for (int i = 0; i < diagonalSet.diagonalSet.Count; ++i)
+            {
+                this.AddVertex(diagonalSet.diagonalSet[i].getStart());
+                this.AddVertex(diagonalSet.diagonalSet[i].getEnd());
+                this.AddVertex(diagonalSet.diagonalSet[i].getCutPnt());
+            }
+            
+        }
     }
 }

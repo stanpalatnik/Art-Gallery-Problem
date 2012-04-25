@@ -67,7 +67,6 @@ namespace GeometryTest
         private void Calculate_Vertex_Guards(object sender, RoutedEventArgs e)
         {
             Triangulation t1 = new Triangulation();
-            Triangulation t2 = new Triangulation();
 
             if (!p1.closed)
             {
@@ -77,7 +76,9 @@ namespace GeometryTest
                 DiagonalSet d1 = t1.triangulate(p1);
                 p1.addDiagonals(d1);
                 TriangulationColoring CSet = t1.color(d1, p1); 		// 3 color the polygon
+                p1.addDiagonalsToVertices(d1);
                 CSet.setGuards(p1);
+                //Triangulation t2 = new Triangulation();
             }
         }
 
