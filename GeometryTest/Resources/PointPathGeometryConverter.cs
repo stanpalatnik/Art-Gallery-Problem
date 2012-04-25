@@ -23,7 +23,14 @@ namespace GeometryTest
                         myEllipseGeometry.Center = new Point(coloredPoint.point.X, coloredPoint.point.Y);
                         myEllipseGeometry.RadiusX = 4;
                         myEllipseGeometry.RadiusY = 4;
-                        myGeometryGroup.Children.Add(myEllipseGeometry);
+                        if (!myGeometryGroup.FillContains(myEllipseGeometry.Center))
+                        {
+                            myGeometryGroup.Children.Add(myEllipseGeometry);
+                        }
+                        else
+                        {
+                            myEllipseGeometry.RadiusY = 3;
+                        }
                     }   
                 }
                 return myGeometryGroup;

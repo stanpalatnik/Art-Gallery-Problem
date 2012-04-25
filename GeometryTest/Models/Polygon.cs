@@ -115,6 +115,9 @@ namespace GeometryTest
 
         internal void flushData()
         {
+            closed = false;
+            clockwise = true;
+            adjArray = new int[50, 50];
             vertices.Clear();
             OnPropertyChanged("vertices");
         }
