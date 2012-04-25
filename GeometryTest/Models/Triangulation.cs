@@ -56,9 +56,9 @@ namespace GeometryTest.Models
                 return CSet;
             }
 
-            a = p.getColoredPoint(curDiag.getStart().index);
-            b = p.getColoredPoint(curDiag.getEnd().index);
-            cut = p.getColoredPoint(curDiag.getCutPnt().index);
+            a = p.getColoredPoint(curDiag.Start.index);
+            b = p.getColoredPoint(curDiag.End.index);
+            cut = p.getColoredPoint(curDiag.Cutoff.index);
 
 
             p.getColoredPoint(a.index).vertexColor = ColoredPoint.color.Blue;
@@ -174,9 +174,9 @@ namespace GeometryTest.Models
             ColoredPoint a, b, cut;
             int d1, d2;
 
-            a = p.getColoredPoint(curDiag.getStart().index);
-            b = p.getColoredPoint(curDiag.getEnd().index);
-            cut = p.getColoredPoint(curDiag.getCutPnt().index);
+            a = p.getColoredPoint(curDiag.Start.index);
+            b = p.getColoredPoint(curDiag.End.index);
+            cut = p.getColoredPoint(curDiag.Cutoff.index);
 
             if ((int)cut.vertexColor == 0) // point has not been colored
             {

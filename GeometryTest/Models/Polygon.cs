@@ -125,7 +125,7 @@ namespace GeometryTest
             for (int i = 0; i < d.diagonalSet.Count; i++)
             {
                 tmp = d.getDiagonal(i);
-                link(tmp.getStart().index, tmp.getEnd().index);
+                link(tmp.Start.index, tmp.End.index);
             }
             return;
         }
@@ -228,7 +228,7 @@ namespace GeometryTest
                 for (j = d.diagonalSet.Count - 1; j >= 0; j--)
                 {
                     diag = d.getDiagonal(j);
-                    unlink(diag.getStart().index, diag.getEnd().index);
+                    unlink(diag.Start.index, diag.End.index);
                 }
                 // reset the colors and remove guards
 
@@ -281,9 +281,9 @@ namespace GeometryTest
         {
             for (int i = 0; i < diagonalSet.diagonalSet.Count; ++i)
             {
-                this.AddVertex(diagonalSet.diagonalSet[i].getStart());
-                this.AddVertex(diagonalSet.diagonalSet[i].getEnd());
-                this.AddVertex(diagonalSet.diagonalSet[i].getCutPnt());
+                this.AddVertex(diagonalSet.diagonalSet[i].Start);
+                this.AddVertex(diagonalSet.diagonalSet[i].End);
+                this.AddVertex(diagonalSet.diagonalSet[i].Cutoff);
             }
             
         }

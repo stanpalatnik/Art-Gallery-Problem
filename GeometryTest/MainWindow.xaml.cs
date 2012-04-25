@@ -67,7 +67,6 @@ namespace GeometryTest
         private void Calculate_Vertex_Guards(object sender, RoutedEventArgs e)
         {
             Triangulation t1 = new Triangulation();
-
             if (!p1.closed)
             {
                 p1.close();
