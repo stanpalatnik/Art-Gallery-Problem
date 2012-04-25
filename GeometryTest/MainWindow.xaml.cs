@@ -77,7 +77,7 @@ namespace GeometryTest
                 TriangulationColoring CSet = t1.color(d1, p1); 		// 3 color the polygon
                 p1.addDiagonalsToVertices(d1);
                 CSet.setGuards(p1);
-                //Triangulation t2 = new Triangulation();
+                Triangulation t2 = new Triangulation();
             }
         }
 

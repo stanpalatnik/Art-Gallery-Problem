@@ -27,10 +27,6 @@ namespace GeometryTest
                         {
                             myGeometryGroup.Children.Add(myEllipseGeometry);
                         }
-                        else
-                        {
-                            myEllipseGeometry.RadiusY = 3;
-                        }
                     }   
                 }
                 return myGeometryGroup;

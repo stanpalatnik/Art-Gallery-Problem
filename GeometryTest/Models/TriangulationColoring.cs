@@ -15,7 +15,10 @@ namespace GeometryTest.Models
         {
             foreach (ColoredPoint p1 in p.vertices)
             {
-                vertexColors[(int)p1.vertexColor]++;
+                if (p1.IsDuplicate == false)
+                {
+                    vertexColors[(int)p1.vertexColor]++;
+                }             
             }
         }
 

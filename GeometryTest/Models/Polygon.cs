@@ -47,7 +47,12 @@ namespace GeometryTest
 
         public void AddVertex(ColoredPoint vertex)
         {
-            this.vertices.Add(vertex);
+            ColoredPoint tmpPoint = new ColoredPoint(vertex);
+            if (this.vertices.Contains(vertex))
+            {
+                tmpPoint.IsDuplicate = true;
+            }
+            this.vertices.Add(tmpPoint);
             OnPropertyChanged("vertices");
         }
 
