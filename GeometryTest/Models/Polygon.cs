@@ -60,6 +60,41 @@ namespace GeometryTest
             
         }
 
+        public bool AddVertexFromMouseClick(ColoredPoint vertex)
+        {
+            Triangulation triangulation = new Triangulation();
+            if (!this.vertices.Contains(vertex))
+            {
+
+                if (this.vertices.Count == 0 || 
+                    triangulation.noIntersection(this.vertices[0].point.X, this.vertices[0].point.Y, vertex.point.X, vertex.point.Y, this))
+                {
+                    vertex.index = this.vertices.Count;
+                    this.vertices.Add(vertex);
+                    OnPropertyChanged("vertices");
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                //if we click on the first point, then we are closing the polygon
+                if (vertex.withinRoot(this.vertices[0]))
+                {
+                    this.closed = true;
+                    OnPropertyChanged("vertices");
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         internal void readCoordinateFile(string inputFile)
         {
             Triangulation triangulation = new Triangulation();
@@ -87,6 +122,10 @@ namespace GeometryTest
                         {
                             //error, we have an intersection
                         }
+                    }
+                    if (this.vertices.Count > 3)
+                    {
+                        this.close();
                     }
                 }
             }
@@ -200,7 +239,6 @@ namespace GeometryTest
         public void close()
         {
             closed = true;
-            return;
         }
         public ColoredPoint getColoredPoint(int i)
         {

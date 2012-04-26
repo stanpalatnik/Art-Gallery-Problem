@@ -114,7 +114,20 @@ namespace GeometryTest
 
         private void SubLayout_Loaded(object sender, RoutedEventArgs e)
         {
+            //Line line = new Line();
 
+            this.MouseDown += line_MouseDown;
+
+            
+            //SubLayout.Children.Add(line);
+        }
+
+        void line_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point p = e.GetPosition(SubLayout);
+            ColoredPoint coloredPoint = new ColoredPoint(p.X, p.Y, true);
+            GeometryCollection g1 = new GeometryCollection();
+            p1.AddVertexFromMouseClick(coloredPoint);
         }
     }
 }

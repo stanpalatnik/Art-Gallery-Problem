@@ -14,7 +14,16 @@ namespace GeometryTest
             {
                 var pointCollection = new System.Windows.Media.PointCollection();
                 foreach (var coloredPoint in value as System.Collections.ObjectModel.ObservableCollection<ColoredPoint>)
-                    pointCollection.Add(coloredPoint.point);
+                {
+                    if (coloredPoint.IsFromMouse = true && Polygon.Instance.closed == false)
+                    {
+                        //we don't add anything to the polygon canvas until it's closed
+                    }
+                    else
+                    {
+                        pointCollection.Add(coloredPoint.point);
+                    }                    
+                }                   
                 return pointCollection;
             }
             return null;

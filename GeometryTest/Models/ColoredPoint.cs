@@ -15,14 +15,10 @@ namespace GeometryTest
         public int index { get; set; }
         public enum color { None, Blue, Red, Yellow };
         public color vertexColor { get; set; }
+        private bool isFromMouse;
         private bool isGuard;
         private bool isDuplicate;
 
-        public bool IsDuplicate
-        {
-            get { return isDuplicate; }
-            set { isDuplicate = value; }
-        }
         public event PropertyChangedEventHandler PropertyChanged;
         private ColoredPoint vertex;
 
@@ -42,6 +38,7 @@ namespace GeometryTest
             this.vertexColor = point.vertexColor;
             this.isGuard = point.IsGuard;
             this.isGuard = point.IsDuplicate;
+            this.IsFromMouse = point.IsFromMouse;
         }
 
         public bool IsGuard
@@ -61,12 +58,25 @@ namespace GeometryTest
             }
         }
 
-        public ColoredPoint(double x, double y)
+        public bool IsDuplicate
+        {
+            get { return isDuplicate; }
+            set { isDuplicate = value; }
+        }
+
+        public bool IsFromMouse
+        {
+            get { return isFromMouse; }
+            set { isFromMouse = value; }
+        }
+
+        public ColoredPoint(double x, double y, bool fromMouse = false)
         {
             point = new Point(x, y);
             index = -1;
             isGuard = false;
             isDuplicate = false;
+            isFromMouse = fromMouse;
         }
 
         public override bool Equals(System.Object obj)
@@ -95,6 +105,17 @@ namespace GeometryTest
             }
 
             return (this.point.X == p.point.X) && (this.point.Y == p.point.Y);
+        }
+
+        public bool withinRoot(ColoredPoint p)
+        {
+            // If parameter is null return false:
+            if ((object)p == null)
+            {
+                return false;
+            }
+
+            return ((Math.Abs(this.point.X - p.point.X) < 3)) && (Math.Abs(this.point.Y - p.point.Y) < 3);
         }
     }
 }
