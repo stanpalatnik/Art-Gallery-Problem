@@ -74,8 +74,8 @@ namespace GeometryTest
                 else if (!p1.clockwise && (p1.area() < 0)) p1.reverse();
                 DiagonalSet d1 = t1.triangulate(p1);
                 p1.addDiagonals(d1);
-                TriangulationColoring CSet = t1.color(d1, p1); 		// 3 color the polygon
                 p1.addDiagonalsToVertices(d1);
+                TriangulationColoring CSet = t1.color(d1, p1); 		// 3 color the polygon
                 CSet.setGuards(p1);
                 Triangulation t2 = new Triangulation();
             }

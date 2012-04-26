@@ -63,7 +63,7 @@ namespace GeometryTest.Models
 
             p.getColoredPoint(a.index).vertexColor = ColoredPoint.color.Blue;
             p.getColoredPoint(b.index).vertexColor = ColoredPoint.color.Red;
-            p.getColoredPoint(cut.index).vertexColor = ColoredPoint.color.Blue;
+            p.getColoredPoint(cut.index).vertexColor = ColoredPoint.color.Yellow;
 
             CSet.add(a);
             CSet.add(b);
@@ -107,7 +107,7 @@ namespace GeometryTest.Models
             {
                 if ((i != b) && (i != a))
                 {
-                    if (p.areNeighbors(a, i) && p.areNeighbors(b, i) && (p.getColoredPoint(i).vertexColor == 0))
+                    if (p.areNeighbors(a, i) && p.areNeighbors(b, i) && (p.getColoredPoint(i).vertexColor == ColoredPoint.color.None))
                     {
                         return p.getColoredPoint(i);
                     }
@@ -163,9 +163,9 @@ namespace GeometryTest.Models
         }
         int nextColor(int c1, int c2)
         {
-            if ((c1 + c2) == 1) return 2;
-            else if ((c1 + c2) == 2) return 1;
-            else return 0;
+            if ((c1 + c2) == 2) return 3;
+            else if ((c1 + c2) == 2) return 2;
+            else return 1;
         }
         TriangulationColoring recurseColor(DiagonalSet d, Polygon p, int i)
         {
@@ -178,7 +178,7 @@ namespace GeometryTest.Models
             b = p.getColoredPoint(curDiag.End.index);
             cut = p.getColoredPoint(curDiag.Cutoff.index);
 
-            if ((int)cut.vertexColor == 0) // point has not been colored
+            if (cut.vertexColor == ColoredPoint.color.None) // point has not been colored
             {
                 p.getColoredPoint(cut.index).vertexColor = (GeometryTest.ColoredPoint.color)nextColor(a.index, b.index);
                 CSet.add(cut);

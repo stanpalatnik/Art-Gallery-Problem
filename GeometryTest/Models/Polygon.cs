@@ -48,12 +48,16 @@ namespace GeometryTest
         public void AddVertex(ColoredPoint vertex)
         {
             ColoredPoint tmpPoint = new ColoredPoint(vertex);
-            if (this.vertices.Contains(vertex))
+            if (!this.vertices.Contains(vertex))
             {
-                tmpPoint.IsDuplicate = true;
+                if (tmpPoint.index == -1)
+                {
+                    tmpPoint.index = this.vertices.Count;
+                }        
+                this.vertices.Add(tmpPoint);
+                OnPropertyChanged("vertices");
             }
-            this.vertices.Add(tmpPoint);
-            OnPropertyChanged("vertices");
+            
         }
 
         internal void readCoordinateFile(string inputFile)
@@ -218,7 +222,7 @@ namespace GeometryTest
          */
         public void remove(int index, DiagonalSet d)
         {
-            Edge diag; ;
+            Edge diag;
             int j;
 
             if (!clockwise)
