@@ -31,7 +31,7 @@
                 <Grid.LayoutTransform>
                     <ScaleTransform ScaleY="-1"/>
                 </Grid.LayoutTransform>
-                <Grid x:Name="SubLayout" Margin="144,140,112,136" Loaded="SubLayout_Loaded">
+                <Grid x:Name="SubLayout"  Loaded="SubLayout_Loaded">
                     <Grid.OpacityMask>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0"/>

@@ -127,7 +127,16 @@ namespace GeometryTest
             Point p = e.GetPosition(SubLayout);
             ColoredPoint coloredPoint = new ColoredPoint(p.X, p.Y, true);
             GeometryCollection g1 = new GeometryCollection();
-            p1.AddVertexFromMouseClick(coloredPoint);
+            if (p1.AddVertexFromMouseClick(coloredPoint))
+            {
+                if (p1.vertices.Count >= 3 && p1.closed == true)
+                {
+                    print_input_file.IsEnabled = true;
+                    calculate_guards.IsEnabled = true;
+                    save_to_output.IsEnabled = true;
+                    create_from_file.IsEnabled = false;
+                }
+            }
         }
     }
 }

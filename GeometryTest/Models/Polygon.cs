@@ -63,6 +63,7 @@ namespace GeometryTest
         public bool AddVertexFromMouseClick(ColoredPoint vertex)
         {
             Triangulation triangulation = new Triangulation();
+            if (this.closed == true) return false;
             if (!this.vertices.Contains(vertex))
             {
 
@@ -158,6 +159,18 @@ namespace GeometryTest
         public String getCalculatedResults()
         {
             StringBuilder rtnStr = new StringBuilder();
+            foreach (ColoredPoint coloredPoint in this.vertices)
+            {
+                if (!coloredPoint.IsDuplicate)
+                {
+                    rtnStr.Append("X: ").Append(coloredPoint.point.X)
+                        .Append(" Y: ").Append(coloredPoint.point.Y)
+                        .Append("Is Guard: ").Append(coloredPoint.IsGuard)
+                        .Append("Vertex Color: ").Append(coloredPoint.vertexColor)
+                        .Append(Environment.NewLine);
+                }
+            }
+
             return rtnStr.ToString();
         }
 

@@ -114,8 +114,7 @@ namespace GeometryTest
             {
                 return false;
             }
-
-            return ((Math.Abs(this.point.X - p.point.X) < 3)) && (Math.Abs(this.point.Y - p.point.Y) < 3);
+            return ((Math.Abs(this.point.X - p.point.X) < 4)) && (Math.Abs(this.point.Y - p.point.Y) < 4);
         }
     }
 }
