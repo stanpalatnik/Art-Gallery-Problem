@@ -64,7 +64,7 @@ namespace GeometryTest
         {
             Triangulation triangulation = new Triangulation();
             if (this.closed == true) return false;
-            if (!this.vertices.Contains(vertex))
+            if (!containsWithinRange(vertex))
             {
 
                 if (this.vertices.Count == 0 || 
@@ -165,12 +165,11 @@ namespace GeometryTest
                 {
                     rtnStr.Append("X: ").Append(coloredPoint.point.X)
                         .Append(" Y: ").Append(coloredPoint.point.Y)
-                        .Append("Is Guard: ").Append(coloredPoint.IsGuard)
-                        .Append("Vertex Color: ").Append(coloredPoint.vertexColor)
+                        .Append(" Is Guard: ").Append(coloredPoint.IsGuard)
+                        .Append(" Vertex Color: ").Append(coloredPoint.vertexColor)
                         .Append(Environment.NewLine);
                 }
             }
-
             return rtnStr.ToString();
         }
 
@@ -192,6 +191,19 @@ namespace GeometryTest
                 link(tmp.Start.index, tmp.End.index);
             }
             return;
+        }
+
+        public bool containsWithinRange(ColoredPoint point)
+        {
+            foreach (ColoredPoint coloredPoint in this.vertices)
+            {
+                if(point.withinRoot(coloredPoint))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void addPnt(Point p)
