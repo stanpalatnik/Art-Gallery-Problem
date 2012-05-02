@@ -326,7 +326,7 @@ namespace GeometryTest
             OnPropertyChanged("vertices");
         }
 
-        public void reverse()
+        public void reverseCollection()
         {
             // 
             if (vertices.Count == 1) return;
@@ -337,6 +337,7 @@ namespace GeometryTest
                 {
                     vertices[i].index = i;
                 }
+                OnPropertyChanged("vertices");
             }
             clockwise = !clockwise;
             return;

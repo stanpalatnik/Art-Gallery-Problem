@@ -242,7 +242,7 @@ namespace GeometryTest.Models
                     }
                 }
             else
-                for (int i = p1.vertices.Count - 2; i > 1; i--)
+                for (int i = p1.vertices.Count - 1; i > 1; i--)
                 {
                     if (intersect(p2, p3, p1.vertices[i - 1], p1.vertices[i]))
                     {
