@@ -70,15 +70,16 @@ namespace GeometryTest
             if (!p1.closed)
             {
                 p1.close();
-                if (p1.clockwise && (p1.area() < 0)) p1.reverse();
-                else if (!p1.clockwise && (p1.area() < 0)) p1.reverse();
-                DiagonalSet d1 = t1.triangulate(p1);
-                p1.addDiagonals(d1);
-                p1.addDiagonalsToVertices(d1);
-                TriangulationColoring CSet = t1.color(d1, p1); 		// 3 color the polygon
-                CSet.setGuards(p1);
-                Triangulation t2 = new Triangulation();
             }
+
+            if (p1.clockwise && (p1.area() < 0)) p1.reverseCollection();
+            else if (!p1.clockwise && (p1.area() < 0)) p1.reverseCollection();
+            DiagonalSet d1 = t1.triangulate(p1);
+            p1.addDiagonals(d1);
+            p1.addDiagonalsToVertices(d1);
+            TriangulationColoring CSet = t1.color(d1, p1); 		// 3 color the polygon
+            CSet.setGuards(p1);
+            Triangulation t2 = new Triangulation();
         }
 
         private void Save_Calculated_Data_To_Output(object sender, RoutedEventArgs e)
