@@ -70,6 +70,7 @@ namespace GeometryTest.Models
                     p.vertices[j].IsGuard = true;
                 }
             }
+            //onpropertychanged
             return;
         }
     }
