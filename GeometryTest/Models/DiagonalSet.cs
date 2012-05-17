@@ -24,6 +24,33 @@ namespace GeometryTest.Models
         {
             for (int i = 0; i < diagonalSet.Count; i++)
             {
+                /*
+                if (((diagonalSet[i].Start.point.X == a.point.X) &&
+                  (diagonalSet[i].Start.point.Y == a.point.Y) &&
+                  (diagonalSet[i].End.point.X == b.point.X) &&
+                  (diagonalSet[i].End.point.Y == b.point.Y))
+                  ||
+                  ((diagonalSet[i].End.point.X == a.point.X) &&
+                  (diagonalSet[i].End.point.Y == a.point.Y) &&
+                  (diagonalSet[i].Start.point.X == b.point.X) &&
+                  (diagonalSet[i].Start.point.Y == b.point.Y)))
+                    return i;
+                 */
+                if ((diagonalSet[i].Start.point == a.point
+                    && diagonalSet[i].End.point == b.point)
+                    ||
+                    (diagonalSet[i].End.point == a.point
+                    && diagonalSet[i].Start.point == b.point))
+                    return i;
+
+            }
+            return -1;
+        }
+
+        public int isInDiagSet2(ColoredPoint a, ColoredPoint b)
+        {
+            for (int i = 1; i < diagonalSet.Count; i++)
+            {
                 if (((diagonalSet[i].Start.point.X == a.point.X) &&
                   (diagonalSet[i].Start.point.Y == a.point.Y) &&
                   (diagonalSet[i].End.point.X == b.point.X) &&

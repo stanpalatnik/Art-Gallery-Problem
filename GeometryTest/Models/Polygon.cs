@@ -19,7 +19,24 @@ namespace GeometryTest
             get;
             set;
         }
+
+        private static readonly Random random = new Random();
+        private static readonly object syncLock = new object();
+        public static int RandomNumber(int min, int max)
+        {
+            lock (syncLock)
+            { // synchronize
+                return random.Next(min, max);
+            }
+        }
+
+        public ObservableCollection<ColoredPoint> backup
+        {
+            get;
+            set;
+        }
         public int[,] adjArray = new int[50, 50];
+        private DiagonalSet diagonals = new DiagonalSet();
         public event PropertyChangedEventHandler PropertyChanged;
         public bool closed { get; set; }
         public bool clockwise = true;
@@ -37,7 +54,30 @@ namespace GeometryTest
             closed = false;
         }
 
-        private void OnPropertyChanged(string propertyName)
+        public DiagonalSet Diagonals
+        {
+            get
+            {
+                return this.diagonals;
+            }
+            set
+            {
+                this.diagonals = value;
+            }
+        }
+
+        public void doBackup()
+        {
+            this.backup = new ObservableCollection<ColoredPoint>(vertices);
+        }
+
+        public void restorePoints()
+        {
+            this.vertices = new ObservableCollection<ColoredPoint>(backup);
+        }
+
+
+        public void OnPropertyChanged(string propertyName)
         {
             if (this.PropertyChanged != null)
             {
@@ -248,6 +288,17 @@ namespace GeometryTest
             }
             currentSum += (vertices[vertices.Count - 1].point.X * vertices[0].point.Y) - (vertices[vertices.Count - 1].point.Y * vertices[0].point.X);
             return currentSum;
+        }
+
+        public void wtf()
+        {
+            for(int i=0;i<this.vertices.Count; ++i)
+            {
+                if(this.vertices[i].vertexColor == ColoredPoint.color.None)
+                {
+                    this.vertices[i].vertexColor = (ColoredPoint.color)RandomNumber(0, 5);
+                }
+            }
         }
 
         /**

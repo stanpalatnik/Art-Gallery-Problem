@@ -74,9 +74,13 @@ namespace GeometryTest
 
             if (p1.clockwise && (p1.area() < 0)) p1.reverseCollection();
             else if (!p1.clockwise && (p1.area() < 0)) p1.reverseCollection();
+            //the algo deletes points from the List so we create a backup list
+            p1.doBackup();
             DiagonalSet d1 = t1.triangulate(p1);
             p1.addDiagonals(d1);
-            p1.addDiagonalsToVertices(d1);
+            p1.Diagonals = d1;
+            //restore the points
+            p1.restorePoints();
             TriangulationColoring CSet = t1.color(d1, p1); 		// 3 color the polygon
             CSet.setGuards(p1);
             Triangulation t2 = new Triangulation();
@@ -93,8 +97,7 @@ namespace GeometryTest
                 string filename = dlg.FileName;
                 using (StreamWriter sw = new StreamWriter(filename))
                 {
-
-                    sw.WriteLine(p1.getInputCoordinates());
+                    sw.WriteLine(p1.getCalculatedResults());
                 }
             }
         }

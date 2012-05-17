@@ -9,11 +9,12 @@ namespace GeometryTest.Models
     class TriangulationColoring
     {
         const int MAX_COLORS = 3;
-        int[] vertexColors = new int[MAX_COLORS+1];
+        int[] vertexColors = new int[MAX_COLORS+2];
         private int size = 0;
 
         internal void setupColors(Polygon p)
         {
+            vertexColors = new int[MAX_COLORS + 2];
             foreach (ColoredPoint point in p.vertices)
             {
                 if (point.IsDuplicate == false)
@@ -61,7 +62,7 @@ namespace GeometryTest.Models
         {
             int curColor = 0;
             setupColors(p);
-            int minColorClass = getMinColorClass()+1;
+            int minColorClass = getMinColorClass();
             for (int j = 0; j < p.vertices.Count; j++)
             {
                 curColor = (int)p.vertices[j].vertexColor;
@@ -70,7 +71,7 @@ namespace GeometryTest.Models
                     p.vertices[j].IsGuard = true;
                 }
             }
-            //onpropertychanged
+            p.OnPropertyChanged("vertices");
             return;
         }
     }
