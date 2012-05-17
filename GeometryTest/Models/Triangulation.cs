@@ -10,7 +10,6 @@ namespace GeometryTest.Models
     class Triangulation
     {
 
-        public Stack<Edge> diagStack = new Stack<Edge>();
         public Triangulation() { }
         double Area2(ColoredPoint p1, ColoredPoint p2, ColoredPoint p3)
         {
@@ -69,42 +68,14 @@ namespace GeometryTest.Models
             CSet.add(a);
             CSet.add(b);
             CSet.add(cut);
-
-            diagStack.Push(curDiag);
-            /*
+            
             if ((d1 = d.isInDiagSet(a, cut)) != -1) CSet.add(recurseColor(d, p, d1));
             if ((d2 = d.isInDiagSet(b, cut)) != -1) CSet.add(recurseColor(d, p, d2));
             if ((d1 = d.isInDiagSet2(a, cut)) != -1) CSet.add(recurseColor(d, p, d1));
             if ((d2 = d.isInDiagSet2(b, cut)) != -1) CSet.add(recurseColor(d, p, d2));
 
             CSet.add(recurseColor(d, p, 0));
-             */
-            while (diagStack.Count != 0)
-            {
-                Edge e = (Edge)diagStack.Pop();
-
-                ColoredPoint colored = e.End;
-                if (true)
-                {
-                    p.vertices[colored.index].vertexColor = (GeometryTest.ColoredPoint.color)nextColor(a.index, b.index);
-
-
-                    if ((d1 = d.isInDiagSet(a, cut)) != -1) diagStack.Push(p.Diagonals.getDiagonal(d1)); ;
-                    if ((d2 = d.isInDiagSet(b, cut)) != -1) diagStack.Push(p.Diagonals.getDiagonal(d2)); ;
-                    if ((d1 = d.isInDiagSet2(a, cut)) != -1) diagStack.Push(p.Diagonals.getDiagonal(d1)); ;
-                    if ((d2 = d.isInDiagSet2(b, cut)) != -1) diagStack.Push(p.Diagonals.getDiagonal(d2)); ;
-
-                    if ((d1 = d.isInDiagSet(a, cut)) != -1)
-                        diagStack.Push(p.Diagonals.getDiagonal(d1));
-                    if ((d2 = d.isInDiagSet(b, cut)) != -1)
-                        diagStack.Push(p.Diagonals.getDiagonal(d2));
-
-                    if ((d1 = d.isInDiagSet2(a, cut)) != -1)
-                        diagStack.Push(p.Diagonals.getDiagonal(d1));
-                    if ((d2 = d.isInDiagSet2(b, cut)) != -1)
-                        diagStack.Push(p.Diagonals.getDiagonal(d1));
-                }
-            }
+             
             return CSet;
 
         }
@@ -138,7 +109,7 @@ namespace GeometryTest.Models
             {
                 if ((i != b) && (i != a))
                 {
-                    if(p.areNeighbors(a, i) && p.areNeighbors(b, i) && (p.getColoredPoint(i).vertexColor == ColoredPoint.color.None))
+                    if((p.getColoredPoint(i).vertexColor == ColoredPoint.color.None))
                     {
                         return p.getColoredPoint(i);
                     }
@@ -183,7 +154,7 @@ namespace GeometryTest.Models
         }
         bool isDiagonal(int i, int j, Polygon P)
         {
-            return inCone(i, j, P) && diagonal(i, j, P);
+            return diagonal(i, j, P);
         }
         bool Left(ColoredPoint p1, ColoredPoint p2, ColoredPoint p3)
         {
@@ -243,10 +214,10 @@ namespace GeometryTest.Models
         public DiagonalSet triangulate(Polygon P)
         {
             DiagonalSet d = new DiagonalSet();
-            int i, i1, i2;
+            int i1, i2;
             int n = P.vertices.Count;
             if (n >= 3)
-                for (i = 0; i < n; i++)
+                for (int i = 0; i < n; i++)
                 {
                     i1 = (i + 1) % n;
                     i2 = (i + 2) % n;
